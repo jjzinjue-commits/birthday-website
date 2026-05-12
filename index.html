@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday 💖</title>
+    <style>
+        :root {
+            --primary-pink: #dd73f7;
+            --soft-bg: #fdf0f5;
+            --text-dark: #2d3436;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--soft-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ✨ Smooth Fade-In Animation */
+        .fade-in {
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 🎈 Hero Section */
+        .hero {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(91,76,225,0.5), #ff8fa3);
+            color: white;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 3rem;
+            margin: 0;
+            animation: heartBeat 1.5s infinite;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .hero h2 {
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .main-photo {
+            width: 220px;
+            border-radius: 50%; /* Circular looks more modern */
+            border: 8px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        /* 💌 Message Card */
+        .message-section {
+            max-width: 600px;
+            margin: -40px auto 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 5;
+        }
+
+        .message-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        /* 📸 Gallery Grid */
+        .section { padding: 40px 20px; text-align: center; }
+        
+        .gallery-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .gallery-grid video {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .gallery-grid img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .gallery-grid img:hover {
+            transform: translateY(-10px) rotate(3deg);
+        }
+       /* Gift Section Styling */
+    .gift-section {
+        background-color: #fff0f3;
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .gift-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        max-width: 800px;
+        margin: 30px auto 0;
+    }
+
+    .gift-box-wrapper {
+        position: relative;
+        width: 250px;
+        cursor: pointer;
+        perspective: 1000px; /* Essential for the 3D flip effect */
+    }
+
+    .gift-box {
+        width: 100%;
+        transition: transform 0.6s ease;
+    }
+
+    /* 📦 Shake Animation (Hover) */
+    .gift-box-wrapper:hover .gift-box {
+        animation: shake 0.5s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes shake {
+        0% { transform: translate(1px, 1px) rotate(0deg); }
+        10px { transform: translate(-1px, -2px) rotate(-1deg); }
+        20px { transform: translate(-3px, 0px) rotate(1deg); }
+        30px { transform: translate(3px, 2px) rotate(0deg); }
+        40px { transform: translate(1px, -1px) rotate(1deg); }
+        50px { transform: translate(-1px, 2px) rotate(-1deg); }
+        60px { transform: translate(-3px, 1px) rotate(0deg); }
+        70px { transform: translate(3px, 1px) rotate(-1deg); }
+        80px { transform: translate(-1px, -1px) rotate(1deg); }
+        90px { transform: translate(1px, 2px) rotate(0deg); }
+        100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+
+    /* 🎁 Opened Gift Styling */
+    .real-gift {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 15px;
+        opacity: 0; /* Hidden initially */
+        transform: scale(0.5) rotateY(180deg); /* Start small and flipped */
+        transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth "bouncy" animation */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    /* 🌟 The "Opened" Class (Applied by JavaScript) */
+    .gift-box-wrapper.opened .gift-box {
+        opacity: 0; /* Hide the box */
+        transform: rotateY(-180deg); /* Flip the box away */
+    }
+
+    .gift-box-wrapper.opened .real-gift {
+        opacity: 1; /* Show the gift */
+        transform: scale(1) rotateY(0deg); /* Pop it in and flip it back */
+    }
+
+    .hint-text {
+        color: #888;
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+
+        /* 🎵 Audio Player Styling */
+        audio {
+            margin-top: 20px;
+            filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%); /* Custom color for player */
+        }
+
+        footer {
+            padding: 40px;
+            font-size: 0.9rem;
+            background: #2d3436;
+            color: #dfe6e9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1 class="title">Happy Birthday ❤️</h1>
+        <h2>To the most special person in my life 🫅🐷💖</h2>
+        
+        <audio id="player" controls>
+            <source src="song.mp3" type="audio/mpeg">
+        </audio>
+        <br>
+        <img src="Photo 1.jpg" class="main-photo" alt="Hero Photo">
+    </div>
+
+    <div class="message-section fade-in">
+        <div class="message-text">
+            <p>Happy Birthday, my little pig. 🐷</p>
+            <p>You make my life warm and happy.</p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+            <p>有你在我身边，我真的好幸福。我用满满的爱做了这个小网站，希望它能让你感受到我有多爱你。你也可以在那里看到你的礼物照片哦～全部都是为你准备的呀 💖</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Our Memories 📸</h2>
+        <div class="gallery-grid">
+          <video controls width="150px">
+  <source src="gif.mp4" type="video/mp4">
+</video>
+            <img src="photo 2.jpg" alt="Memory">
+            <img src="Photo 3.jpg" alt="Memory">
+            <img src="image.png" alt="Memory">
+        </div>
+    </div>
+
+    <div class="section" style="background-color: #fff0f3;">
+       <div class="gift-section">
+    <h2>For You 🎁</h2>
+    <p>I made these with love just for you 💖</p>
+    
+    <div class="gift-container">
+      
+       <div class="gift-box-wrapper" id="gift1" onclick="openSpecificGift('gift1')">
+            <img src="Gifts.jpg" class="gift-box" alt="Gift Box">
+            <img src="photo 4.jpg" class="real-gift" alt="Flute">  
+            <p class="hint-text">Click to open 👆</p>
+            </div>
+        
+        <div class="gift-box-wrapper" id="gift2" onclick="openSpecificGift('gift2')">
+            <img src="Gifts.jpg" class="gift-box" alt="Gift Box">
+            <img src="dudu.png" class="real-gift" alt="Flute">
+            <p class="hint-text">Click to open 👆</p>
+        </div>
+
+        <div class="gift-box-wrapper" id="gift3" onclick="openSpecificGift('gift3')">
+            <img src="Gifts.jpg" class="gift-box" alt="Gift Box">
+            <img src="gift.jpg" class="real-gift" alt="Gift">
+            <p class="hint-text"> This is how much I love you</p>
+        </div>
+
+    </div>
+   </div>
+    </div>
+    
+     <footer>
+        Made with love by Your BaoBao 💖
+    </footer>
+    <script>
+    function openSpecificGift(id) {
+        // 'id' represents the specific box you clicked (e.g., 'gift1')
+        const targetGift = document.getElementById(id);
+        
+        // We only add the 'opened' class to that specific ID
+        if (!targetGift.classList.contains('opened')) {
+            targetGift.classList.add('opened');
+        }
+    }
+</script>
+</body>
+</html>
